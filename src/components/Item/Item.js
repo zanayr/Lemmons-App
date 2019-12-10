@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { withRouter } from 'react-router-dom';
 
 import Context from '../buttons/Context/Context';
 
@@ -11,9 +12,14 @@ const Item = (props) => {
     if (active)
         style.push(styles.Active);
     
+    const handleClick = (e) => {
+        setActive(prev => (!prev));
+        props.history.push('/inspect/' + props.id);
+    };
+
     return (
         <div
-            onClick={() => setActive(prev => (!prev))}
+            onClick={handleClick}
             className={style.join(' ')}>
             <div className={styles.Wrapper}>
                 <h3>{props.title}</h3>
@@ -25,4 +31,4 @@ const Item = (props) => {
     );
 };
 
-export default Item;
+export default withRouter(Item);

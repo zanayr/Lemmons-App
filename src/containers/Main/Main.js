@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from '../../axios-items';
 
 import Action from '../../components/buttons/Action/Action';
 import List from '../../components/List/List';
@@ -25,16 +26,13 @@ class Main extends Component {
     };
 
     handleAction = (e) => {
-        const id = Object.keys(this.state.items).length;
-        this.setState({
-            items: {
-                ...this.state.items,
-                [id]: {
-                    title: 'Added Item',
-                    detail: 'This is an added item, hooray!'
-                }
-            }
-        });
+        const item = {
+            title: 'Added Item',
+            detail: 'This is an added item, hooray!'
+        }
+        axios.post('/items.json', item)
+            .then(res => console.log(res))
+            .catch(err => console.error);
     };
 
     render() {

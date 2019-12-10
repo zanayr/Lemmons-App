@@ -1,5 +1,6 @@
 .Item {
     border-bottom: 1px solid var(--light-gray);
+    height: 12.5vh;
     margin-right: -8px;
 }
 .Item > div {
@@ -12,4 +13,9 @@
     height: 100%;
     padding: 8px 8px 8px 0px;
     width: auto;
+}
+
+.Active {
+    background-color: var(--primary);
+    color: var(--white);
 }

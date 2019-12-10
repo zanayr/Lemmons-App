@@ -1,0 +1,25 @@
+.Context {
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    transition: right 0.33s ease;
+    width: 12.5vh;
+}
+
+/* Positions */
+.Edit {
+    background-color: var(--secondary);
+    color: var(--white);
+    right: -12.5vh;
+}
+.Edit.Active {
+    right: 12.5vh;
+}
+.Complete {
+    background-color: var(--accent);
+    color: var(--black);
+    right: -25vh;
+}
+.Complete.Active {
+    right: 0px;
+}

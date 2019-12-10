@@ -43,7 +43,7 @@ class Main extends Component {
                 <div className={styles.Wrapper}>
                     <Title value='Lemmons App' />
                     <List data={this.state.items}/>
-                    <Action click={this.handleAction}/>
+                    <Action click={this.handleAction} value='+'/>
                 </div>
             </main>
         );

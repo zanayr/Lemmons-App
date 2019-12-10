@@ -8,7 +8,7 @@ const action = (props) => {
             onClick={props.click}
             className={styles.Action}>
             <div className={styles.Wrapper}>
-                <h3>+</h3>
+                <h3>{props.value}</h3>
             </div>
         </div>
     );

@@ -1,0 +1,21 @@
+.Action {
+    background-color: var(--accent);
+    border-radius: 16px;
+    bottom: 8px;
+    cursor: pointer;
+    height: 32px;
+    position: absolute;
+    right: 8px;
+    width: 32px;
+}
+.Action > div {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.Wrapper {
+    height: 100%;
+    width: 100%;
+}

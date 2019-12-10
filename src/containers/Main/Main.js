@@ -4,6 +4,8 @@ import Action from '../../components/buttons/Action/Action';
 import List from '../../components/List/List';
 import Title from '../../components/Title/Title';
 
+import styles from './Main.module.css';
+
 class Main extends Component {
     state = {
         value: ''
@@ -11,9 +13,9 @@ class Main extends Component {
 
     render() {
         return (
-            <main>
-                <div>
-                    <Title />
+            <main className={styles.Main}>
+                <div className={styles.Wrapper}>
+                    <Title value='Lemmons App' />
                     <List />
                     <Action />
                 </div>

@@ -16,6 +16,11 @@
     padding: 0px 8px;
     width: auto;
 }
+.Item p {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 
 .Active {
     background-color: var(--primary);

@@ -1,4 +1,5 @@
 .Main {
+    background-color: var(--white);
     height: 100vh;
 }
 .Wrapper {

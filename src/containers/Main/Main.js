@@ -30,7 +30,7 @@ class Main extends Component {
                         <div className={styles.Wrapper}>
                             <Title value='Lemmons App' />
                             <List data={this.props.items}/>
-                            <Action click={this.handleAction} value='+'/>
+                            <Action click={this.handleAction} value='a'/>
                         </div>
                     </div>
                 </div>

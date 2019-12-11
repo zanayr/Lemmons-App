@@ -18,8 +18,8 @@
 
 
 .Pit {
-    background-color: var(--light-gray);
-    border: solid 1px var(--light-gray);
+    background-color: var(--dark-gray);
+    border: solid 1px var(--dark-gray);
     border-radius: 16px;
     cursor: pointer;
     height: 32px;
@@ -35,15 +35,16 @@
 
 .Knob {
     background-color: var(--white);
-    border: solid 1px var(--light-gray);
+    border: solid 1px var(--dark-gray);
     border-radius: 15px;
     height: 30px;
     left: -1px;
     position: absolute;
     top: -1px;
-    transition: left 0.33s ease;
+    transition: left 0.33s ease, border-color 0.167s ease 0.167s;
     width: 30px;
 }
 .Knob.Active {
+    border-color: var(--accent);
     left: 33px;
 }

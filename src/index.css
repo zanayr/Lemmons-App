@@ -1,3 +1,13 @@
+/*  Fonts  */
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,700,900&display=swap');
+@font-face {
+  font-family: 'Chroma Dingbats';
+  src: url('./fonts/Chroma_Dingbats.woff2') format('woff2'),
+      url('./fonts/Chroma_Dingbats.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 html, body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

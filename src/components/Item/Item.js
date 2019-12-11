@@ -39,12 +39,12 @@ const Item = (props) => {
                 <h3>{props.data.title}</h3>
                 <p>{props.data.detail}</p>
                 <Context
-                    value='edit'
+                    value='b'
                     position={0}
                     active={active}
                     click={handleOnEdit} />
                 <Context
-                    value='delete'
+                    value='d'
                     position={1}
                     active={active}
                     click={handleOnDelete} />

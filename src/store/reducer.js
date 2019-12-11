@@ -24,7 +24,7 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 items: state.items.filter(i => {
                     return i.id !== action.payload.id;
-                })
+                }).sort(i => i.complete ? 1 : -1)
             };
         case actions.FAIL:
             //  Set the error data
@@ -58,7 +58,7 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 items: state.items.filter(i => {
                     return i.id !== action.payload.id;
-                }).concat(action.payload)
+                }).concat(action.payload).sort(i => i.complete ? 1 : -1)
             };
         default:
             return state;

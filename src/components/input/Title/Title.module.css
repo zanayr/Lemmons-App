@@ -33,6 +33,7 @@
 
 /* Input */
 .Title input {
+    background-color: var(--white);
     border: none;
     font-size: 2em;
     font-weight: 900;

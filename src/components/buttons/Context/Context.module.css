@@ -1,24 +1,36 @@
 .Context {
-    height: calc(4em - 1px);
+    font-family: 'Chroma Dingbats';
+    font-size: 2em;
+    height: calc(2em - 1px);
     position: absolute;
     top: 0px;
     transition: right 0.33s ease;
-    width: 4em;
+    width: 2em;
+}
+.Wrapper {
+    height: 100%;
+    width: auto;
+}
+.Context > div {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 /* Positions */
 .Edit {
     background-color: var(--secondary);
     color: var(--white);
-    right: -4em;
+    right: -2em;
 }
 .Edit.Active {
-    right: 4em;
+    right: 2em;
 }
 .Complete {
     background-color: var(--accent);
     color: var(--black);
-    right: -8em;
+    right: -4em;
 }
 .Complete.Active {
     right: 0em;

@@ -2,9 +2,9 @@ import React from 'react';
 
 import styles from './Nav.module.css';
 
-const nav = (props) => {
+const disabledNav = (props) => {
     return (
-        <div className={styles.Nav} onClick={props.click}>
+        <div className={[styles.Nav, styles.Disabled].join(' ')}>
             <div className={styles.Wrapper}>
                 <p>{props.value}</p>
             </div>
@@ -12,4 +12,4 @@ const nav = (props) => {
     );
 };
 
-export default nav;
+export default disabledNav;

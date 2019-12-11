@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import axios from '../../axios-items';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions';
+import * as utility from '../../utility/utility';
 
 import Navigation from '../../components/Navigation/Navigation';
 import Title from '../../components/input/Title/Title';
 import Detail from '../../components/input/Detail/Detail';
+import Bar from '../../components/buttons/Bar/Bar';
 
 import styles from './Inspect.module.css';
 
@@ -17,22 +18,19 @@ class Inspector extends Component {
     }
 
     componentDidMount() {
-        let item;
-        this.props.items.map(i => {
-            if (i.id === this.props.match.params.id)
-                item = i;
-        });
-        this.setState({
-            ...this.state,
-            title: item.title,
-            detail: item.detail
-        });
+        if (this.props.item) {
+            this.setState({
+                ...this.state,
+                title: this.props.item.title,
+                detail: this.props.item.detail
+            });
+        }
     }
 
     handleCancel = (e) => {
-        console.log('cancel clicked');
+        this.props.onClear();
         this.props.history.goBack();
-    }
+    };
     handleChange = (e, property) => {
         this.setState({
             ...this.state,
@@ -44,31 +42,32 @@ class Inspector extends Component {
                     touched: true
                 });
         });
-    }
+    };
     handleConfirm = (e) => {
         const item = {
-            id: 0,
-            data: {
-                title: this.state.title,
-                detail: this.state.detail
-            }
+            detail: this.state.detail,
+            id: utility.genId(),
+            title: this.state.title,
         };
-        if (this.props.match.params.id) {
+        if (this.props.item) {
             this.props.onUpdate(item);
         } else {
             this.props.onAdd(item);
         }
-    }
+        this.props.onClear();
+        this.props.history.goBack();
+    };
+    handleDelete = (e) => {
+        this.props.onDelete({id: this.props.match.params.id});
+    };
 
     render() {
         return (
             <main>
                 <div>
                     <Navigation
-                        actions={{
-                            cancel: this.handleCancel,
-                            confirm: this.handleConfirm
-                        }}
+                        cancel={this.handleCancel}
+                        confirm={this.handleConfirm}
                         touched={this.state.touched}
                         values={['cancel', this.props.match.params.id ? 'save' : 'add']}/>
                     <form>
@@ -81,7 +80,7 @@ class Inspector extends Component {
                                 value={this.state.detail} />
                         </div>
                     </form>
-                    {/* <Bar value='delete' click={this.handleDelete} /> */}
+                    <Bar value='delete' click={this.handleDelete} />
                 </div>
             </main>
         );
@@ -90,13 +89,15 @@ class Inspector extends Component {
 
 const mapStateToProps = state => {
     return {
-        items: state.items
+        item: state.single
     }
 };
 const mapDispatchToProps = dispatch => {
     return {
-        onAdd: (data) => dispatch({type: actions.ADD_ITEM, payload: data}),
-        onUpdate: (data) => dispatch({type: actions.UPDATE_ITEM, payload: data})
+        onAdd: (data) => dispatch(actions.add_async(data)),
+        onDelete: (data) => dispatch(actions.delete_async(data)),
+        onUpdate: (data) => dispatch(actions.update_async(data)),
+        onClear: () => dispatch(actions.select(null))
     }
 }
 

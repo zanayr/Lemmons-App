@@ -1,41 +1,104 @@
 import axios from '../axios-items';
 
-export const ADD_ITEM = 'ADD_ITEM';
-export const DELETE_ITEM = 'DELETE_ITEM';
-export const SET_ITEMS = 'SET_ITEMS';
-export const UPDATE_ITEM = 'UPDATE_ITEM';
+export const ADD = 'ADD';
+export const CLEAR = 'CLEAR';
+export const DELETE = 'DELETE';
+export const FAIL = 'FAIL';
+export const GET_ALL = 'GET_ALL';
+export const SELECT = 'SELECT';
+export const UPDATE = 'UPDATE';
 
-// Action creators
-export const add = (data) => {
+
+//  Actions  //
+const add = (data) => {
     return {
-        type: ADD_ITEM,
+        type: ADD,
         payload: data
     };
 };
-export const del = (data) => {
+export const clear = () => {
     return {
-        type: DELETE_ITEM,
+        type: CLEAR,
+        payload: null
+    };
+};
+const del = (data) => {
+    return {
+        type: DELETE,
         payload: data
     };
 };
-export const set = (data) => {
+const fail = (err) => {
     return {
-        type: SET_ITEMS,
+        type: FAIL,
+        payload: err
+    };
+};
+const getAll = (data) => {
+    return {
+        type: GET_ALL,
         payload: data
     };
 };
-export const udpate = (data) => {
+export const select = (data) => {
     return {
-        type: UPDATE_ITEM,
+        type: SELECT,
         payload: data
     };
 };
-export const getAll = () => {
+const update = (data) => {
+    return {
+        type: UPDATE,
+        payload: data
+    };
+};
+
+
+//  Async Actions  //
+export const add_async = (data) => {
+    return dispatch => {
+        axios.patch('/items/' + data.id + '.json', data)
+        .then(response => {
+            console.log(response);
+            dispatch(add(data));
+        })
+        .catch(error => {
+            console.log(error);
+            dispatch(fail(error));
+        });
+    }
+}
+export const delete_async = (data) => {
+    return dispatch => {
+        axios.delete('/items/' + data.id + '.json')
+            .then(response => {
+                dispatch(del(data));
+            })
+            .catch(error => {
+                dispatch(fail(error));
+            });
+    }
+}
+export const getAll_async = () => {
     return dispatch => {
         axios.get('items.json')
-            .then(res => {
-                dispatch(set(res.data));
+            .then(response => {
+                dispatch(getAll(response.data));
             })
-            .catch(err => console.error);
+            .catch(error => {
+                dispatch(fail(error));
+            });
     }
 };
+export const update_async = (data) => {
+    return dispatch => {
+        axios.put('/items/' + data.id + '.json', data)
+        .then(response => {
+            console.log(response);
+            dispatch(update(data));
+        })
+        .catch(error => {
+            dispatch(fail(error));
+        });
+    }
+}

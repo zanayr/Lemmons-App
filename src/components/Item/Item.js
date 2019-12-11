@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import * as actions from '../../store/actions';
 
 import Context from '../buttons/Context/Context';
 
@@ -14,7 +16,8 @@ const Item = (props) => {
     
     const handleClick = (e) => {
         setActive(prev => (!prev));
-        props.history.push('/inspect/' + props.id);
+        props.select(props.data);
+        props.history.push('/inspect');
     };
 
     return (
@@ -22,8 +25,8 @@ const Item = (props) => {
             onClick={handleClick}
             className={style.join(' ')}>
             <div className={styles.Wrapper}>
-                <h3>{props.title}</h3>
-                <p>{props.detail}</p>
+                <h3>{props.data.title}</h3>
+                <p>{props.data.detail}</p>
                 <Context value='edit' position={0} active={active} />
                 <Context value='complete' position={1} active={active} />
             </div>
@@ -31,4 +34,10 @@ const Item = (props) => {
     );
 };
 
-export default withRouter(Item);
+const mapDispatchToProps = dispatch => {
+    return {
+        select: (data) => dispatch(actions.select(data))
+    }
+}
+
+export default connect(null, mapDispatchToProps)(withRouter(Item));

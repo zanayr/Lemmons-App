@@ -19,18 +19,11 @@ class Main extends Component {
     }
 
     handleAction = (e) => {
-        const item = {
-            title: 'Added Item',
-            detail: 'This is an added item, hooray!'
-        }
-        // axios.post('/items.json', item)
-        //     .then(res => console.log(res))
-        //     .catch(err => console.error);
-        this.props.onAddItem({id: 0, data: item});
+        e.preventDefault();
+        this.props.history.push('/inspect/');
     };
 
     render() {
-        console.log(this.props.items);
         return (
             <main className={styles.Main}>
                 <div className={styles.Wrapper}>
@@ -50,9 +43,7 @@ const mapStateToProps = state => {
 };
 const mapDispatchToProps = dispatch => {
     return {
-        onAddItem: data => dispatch(actions.add(data)),
-        onDeleteItem: data => dispatch(actions.del(data)),
-        onLoad: () => dispatch(actions.getAll())
+        onLoad: () => dispatch(actions.getAll_async())
     };
 };
 

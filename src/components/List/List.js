@@ -7,9 +7,7 @@ import styles from './List.module.css';
 const list = (props) => {
     const items = props.data.map(item => {
         return <Item
-            id={item.id}
-            title={item.title}
-            detail={item.detail}
+            data={item}
             key={item.id} />
     });
     return (

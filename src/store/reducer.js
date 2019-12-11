@@ -1,44 +1,62 @@
 import * as actions from './actions';
 
 const initialState = {
-    items: []
+    error: null,
+    items: [],
+    single: null
 };
 
 const reducer = (state = initialState, action) => {
-    const items = {...state.items};
     switch (action.type) {
-        case actions.ADD_ITEM:
-            items = items.concat(action.payload);
+        case actions.ADD:
             return {
                 ...state,
-                items: items
+                items: state.items.concat(action.payload)
             };
-        case actions.DELETE_ITEM:
-            items = items.filter(item => {
-                return item.id !== action.payload.id;
-            });
+        case actions.CLEAR:
+            //  Clear the error status
             return {
                 ...state,
-                items: items
+                error: null
             };
-        case actions.SET_ITEMS:
+        case actions.DELETE:
             return {
                 ...state,
-                items: Object.keys(action.payload).map(key => {
+                items: state.items.filter(i => {
+                    return i.id !== action.payload.id;
+                })
+            };
+        case actions.FAIL:
+            //  Set the error data
+            return {
+                ...state,
+                error: action.payload
+            };
+        case actions.SELECT:
+            let single = null;
+            if (action.payload && action.payload.id)
+                single = state.items.find(i => i.id === action.payload.id);
+            return {
+                ...state,
+                single: single
+            };
+        case actions.GET_ALL:
+            return {
+                ...state,
+                items: Object.keys(action.payload).map(k => {
                     return {
-                        id: key,
-                        title: action.payload[key].title,
-                        detail: action.payload[key].detail
+                        id: k,
+                        title: action.payload[k].title,
+                        detail: action.payload[k].detail
                     }
                 })
             };
-        case actions.UPDATE_ITEM:
-            items = items.filter(item => {
-                return item.id !== action.payload.id;
-            }).concat(action.payload);
+        case actions.UPDATE:
             return {
                 ...state,
-                items: items
+                items: state.items.filter(i => {
+                    return i.id !== action.payload.id;
+                }).concat(action.payload)
             };
         default:
             return state;

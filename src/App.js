@@ -7,7 +7,8 @@ import Main from './containers/Main/Main';
 function App() {
   return (
     <div>
-      <Route path='/inspect/:id' component={Inspect} />
+      <Route path='/inspect/:id' exact component={Inspect} />
+      <Route path='/inspect/' component={Inspect} />
       <Route path='/' exact component={Main} />
     </div>
   );

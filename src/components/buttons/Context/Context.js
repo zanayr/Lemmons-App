@@ -7,7 +7,9 @@ const Context = (props) => {
     if (props.active)
         style.push(styles.Active);
     return (
-        <div className={style.join(' ')}>
+        <div
+            onClick={props.click}
+            className={style.join(' ')}>
             <div className={styles.Wrapper}>
                 {props.value}
             </div>

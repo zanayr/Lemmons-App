@@ -1,6 +1,9 @@
 .Item {
+    background-color: var(--white);
     border-bottom: 1px solid var(--light-gray);
     height: 4em;
+    margin: 0px -8px;
+    transition: background-color 0.33s ease, color 0.167s ease 0.167s;
 }
 .Item > div {
     align-content: flex-start;
@@ -10,11 +13,24 @@
 }
 .Wrapper {
     height: 100%;
-    padding: 8px 8px 8px 0px;
+    padding: 0px 8px;
     width: auto;
 }
 
 .Active {
     background-color: var(--primary);
+    color: var(--white);
+}
+.Urgent {
+    border-left: solid 4px var(--primary);
+}
+.Urgent > .Wrapper {
+    padding-left: 4px;
+}
+.Complete {
+    border-left: none;
+    color: var(--dark-gray);
+}
+.Complete.Active {
     color: var(--white);
 }

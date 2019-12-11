@@ -6,7 +6,6 @@ const Toggle = (props) => {
     const [ active, setActive ] = useState(props.value);
     const outerStyle = [styles.Pit];
     const innerStyle = [styles.Knob];
-
     if (active) {
         outerStyle.push(styles.Active);
         innerStyle.push(styles.Active);
@@ -14,6 +13,7 @@ const Toggle = (props) => {
 
     const handleOnClick = (e) => {
         setActive(!active);
+        props.click();
     };
 
     return (

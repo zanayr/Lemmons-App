@@ -13,21 +13,28 @@ import styles from './Inspect.module.css';
 
 class Inspect extends Component {
     state = {
-        complete: false,
+        complete: 0,
         detail: '',
+        loaded: false,
         title: '',
-        urgent: false
+        urgent: 0
     }
 
     componentDidMount() {
         if (this.props.item) {
+            console.log(this.state.urgent, this.props.item.urgent);
             this.setState(prev => ({
                 ...prev,
                 complete: this.props.item.complete,
                 detail: this.props.item.detail,
                 title: this.props.item.title,
                 urgent: this.props.item.urgent
-            }));
+            }), () => {
+                this.setState(prev => ({
+                    ...prev,
+                    loaded: true
+                }));
+            });
         }
     }
 
@@ -50,9 +57,11 @@ class Inspect extends Component {
     };
     handleConfirm = (e) => {
         const item = {
-            detial: this.state.detail,
+            complete: this.state.complete,
+            detail: this.state.detail,
             id: this.props.item ? this.props.item.id : utility.genId(),
-            title: this.state.title
+            title: this.state.title,
+            urgent: this.state.urgent
         }
         if (this.props.item) {
             this.props.onUpdate(item);
@@ -62,19 +71,30 @@ class Inspect extends Component {
         this.props.onClear();
         this.props.history.goBack();
     };
-    handleDelete = (e) => {
-        this.props.onDelete({id: this.props.item.id});
-        this.props.onClear();
-        this.props.history.goBack();
-    };
     handleToggle = (e, property) => {
         this.setState(prev => ({
             ...prev,
-            [property]: !prev[property]
+            [property]: 1 - prev[property]
         }));
     }
 
     render() {
+        let urgent = null;
+        let complete = null;
+        if (this.state.loaded || !this.props.item) {
+            urgent = (
+                <Toggle
+                    click={(e) => this.handleToggle(e, 'urgent')}
+                    label='urgent'
+                    value={this.state.urgent} />
+            );
+            complete = (
+                <Toggle
+                    click={(e) => this.handleToggle(e, 'complete')}
+                    label='complete'
+                    value={this.state.complete} />
+            );
+        }
         return (
             <main className={styles.Inspect}>
                 <div className={styles.Wrapper}>
@@ -95,14 +115,8 @@ class Inspect extends Component {
                                 value={this.state.detail}
                                 label='detail'
                                 placeholder='Lorem ipsum dolor set amet.' />
-                            <Toggle
-                                change={(e) => this.handleToggle(e, 'complete')}
-                                value={this.state.complete}
-                                label='complete' />
-                            <Toggle
-                                change={(e) => this.handleToggle(e, 'urgent')}
-                                value={this.state.urgent}
-                                label='urgent' />
+                            {urgent}
+                            {complete}
                         </div>
                     </form>
                 </div>

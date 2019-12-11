@@ -11,7 +11,7 @@ const reducer = (state = initialState, action) => {
         case actions.ADD:
             return {
                 ...state,
-                items: state.items.concat(action.payload)
+                items: state.items.concat(action.payload).sort(i => i.complete ? 1 : -1)
             };
         case actions.CLEAR:
             //  Clear the error status
@@ -45,11 +45,13 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 items: Object.keys(action.payload).map(k => {
                     return {
+                        complete: action.payload[k].complete,
+                        detail: action.payload[k].detail,
                         id: k,
                         title: action.payload[k].title,
-                        detail: action.payload[k].detail
+                        urgent: action.payload[k].urgent
                     }
-                })
+                }).sort(i => i.complete ? 1 : -1)
             };
         case actions.UPDATE:
             return {

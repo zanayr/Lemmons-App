@@ -1,4 +1,4 @@
-import axios from '../axios-items';
+import axios from './axios';
 
 export const ADD = 'ADD';
 export const CLEAR = 'CLEAR';
@@ -59,11 +59,9 @@ export const add_async = (data) => {
     return dispatch => {
         axios.patch('/items/' + data.id + '.json', data)
         .then(response => {
-            console.log(response);
             dispatch(add(data));
         })
         .catch(error => {
-            console.log(error);
             dispatch(fail(error));
         });
     }
@@ -94,7 +92,6 @@ export const update_async = (data) => {
     return dispatch => {
         axios.put('/items/' + data.id + '.json', data)
         .then(response => {
-            console.log(response);
             dispatch(update(data));
         })
         .catch(error => {

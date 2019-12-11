@@ -1,25 +1,25 @@
 .Context {
-    height: 100%;
+    height: calc(4em - 1px);
     position: absolute;
     top: 0px;
     transition: right 0.33s ease;
-    width: 12.5vh;
+    width: 4em;
 }
 
 /* Positions */
 .Edit {
     background-color: var(--secondary);
     color: var(--white);
-    right: -12.5vh;
+    right: -4em;
 }
 .Edit.Active {
-    right: 12.5vh;
+    right: 4em;
 }
 .Complete {
     background-color: var(--accent);
     color: var(--black);
-    right: -25vh;
+    right: -8em;
 }
 .Complete.Active {
-    right: 0px;
+    right: 0em;
 }

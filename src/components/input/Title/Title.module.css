@@ -1,0 +1,35 @@
+.Title {
+    border-bottom: 1px solid var(--light-gray);
+    height: 33.33vh;
+    width: auto;
+}
+.Title > div {
+    align-content: flex-start;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+.Wrapper {
+    height: 100%;
+    padding: 8px;
+    width: auto;
+}
+
+.Title label {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    visibility: hidden;
+    z-index: -1;
+}
+
+/* Input */
+.Title input {
+    border: none;
+    font-size: 2em;
+    font-weight: 700;
+    padding: 0px;
+}
+.Title input:focus {
+    outline: none;
+}

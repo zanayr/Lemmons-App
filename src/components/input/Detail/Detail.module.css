@@ -1,0 +1,35 @@
+.Detail {
+    height: auto;
+    width: auto;
+}
+.Detail > div {
+    align-content: flex-start;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+.Wrapper {
+    height: 100%;
+    padding: 8px;
+    width: auto;
+}
+
+.Detail label {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    visibility: hidden;
+    z-index: -1;
+}
+
+/* Input */
+.Detail textarea {
+    border: none;
+    font-size: 1em;
+    height: 4em;
+    padding: 0px;
+    resize: none;
+}
+.Detail textarea:focus {
+    outline: none;
+}

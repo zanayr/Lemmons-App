@@ -5,12 +5,12 @@ import Item from '../Item/Item';
 import styles from './List.module.css';
 
 const list = (props) => {
-    const items = Object.keys(props.data).map(key => {
+    const items = props.data.map(item => {
         return <Item
-            id={key}
-            title={props.data[key].title}
-            detail={props.data[key].detail}
-            key={key} />
+            id={item.id}
+            title={item.title}
+            detail={item.detail}
+            key={item.id} />
     });
     return (
         <div className={styles.List}>

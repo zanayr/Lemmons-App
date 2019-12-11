@@ -1,0 +1,22 @@
+.Nav {
+    color: var(--primary);
+    cursor: pointer;
+    height: auto;
+    width: auto;
+}
+.Nav > div {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 8px;
+}
+.Nav.Disabled {
+    color: var(--light-gray);
+    cursor: normal;
+}
+
+.Nav p {
+    font-size: 0.9em;
+    text-transform: uppercase;
+}

@@ -9,7 +9,10 @@ const Title = (props) => {
                 <label>Title</label>
                 <input
                     onChange={props.change}
-                    value={props.value}/>
+                    value={props.value}
+                    placeholder={props.placeholder}
+                    maxLength={24}/>
+                    <span></span>
             </div>
         </div>
     );

@@ -1,5 +1,7 @@
 .Detail {
+    border-bottom: 1px solid var(--light-gray);
     height: auto;
+    padding-top: 8px;
     width: auto;
 }
 .Detail > div {
@@ -10,7 +12,6 @@
 }
 .Wrapper {
     height: 100%;
-    padding: 8px;
     width: auto;
 }
 
@@ -25,8 +26,9 @@
 /* Input */
 .Detail textarea {
     border: none;
+    font-family: 'Montserrat', 'Arail', sans-serif;
     font-size: 1em;
-    height: 4em;
+    height: 8em;
     padding: 0px;
     resize: none;
 }

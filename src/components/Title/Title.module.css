@@ -1,7 +1,11 @@
 .Title {
-    border-bottom: 1px solid var(--light-gray);
     height: 33.33vh;
     width: auto;
+}
+.Wrapper {
+    height: 100%;
+    padding: 8px;
+    width: 100%;
 }
 .Title > div {
     align-content: flex-start;
@@ -9,8 +13,12 @@
     flex-direction: column;
     justify-content: flex-end;
 }
-.Wrapper {
-    height: 100%;
-    padding: 8px;
-    width: 100%;
+.Title span {
+    background-color: var(--light-gray);
+    bottom: 0px;
+    height: 1px;
+    left: 8px;
+    position: absolute;
+    right: 0px;
+    top: auto;
 }

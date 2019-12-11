@@ -1,7 +1,6 @@
 .Item {
     border-bottom: 1px solid var(--light-gray);
-    height: 12.5vh;
-    margin-right: -8px;
+    height: 4em;
 }
 .Item > div {
     align-content: flex-start;

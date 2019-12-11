@@ -7,6 +7,7 @@ const title = (props) => {
         <div className={styles.Title}>
             <div className={styles.Wrapper}>
                 <h1>{props.value}</h1>
+                <span></span>
             </div>
         </div>
     );

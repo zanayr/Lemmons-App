@@ -27,9 +27,13 @@ class Main extends Component {
         return (
             <main className={styles.Main}>
                 <div className={styles.Wrapper}>
-                    <Title value='Lemmons App' />
-                    <List data={this.props.items}/>
-                    <Action click={this.handleAction} value='+'/>
+                    <div className={styles.Container}>
+                        <div className={styles.Wrapper}>
+                            <Title value='Lemmons App' />
+                            <List data={this.props.items}/>
+                            <Action click={this.handleAction} value='+'/>
+                        </div>
+                    </div>
                 </div>
             </main>
         );

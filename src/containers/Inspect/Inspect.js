@@ -7,26 +7,31 @@ import Navigation from '../../components/Navigation/Navigation';
 import Title from '../../components/input/Title/Title';
 import Detail from '../../components/input/Detail/Detail';
 import Bar from '../../components/buttons/Bar/Bar';
+import Toggle from '../../components/ui/Toggle/Toggle';
 
 import styles from './Inspect.module.css';
 
-class Inspector extends Component {
+class Inspect extends Component {
     state = {
-        touched: false,
+        complete: false,
+        detail: '',
         title: '',
-        detail: ''
+        urgent: false
     }
 
     componentDidMount() {
         if (this.props.item) {
-            this.setState({
-                ...this.state,
+            this.setState(prev => ({
+                ...prev,
+                complete: this.props.item.complete,
+                detail: this.props.item.detail,
                 title: this.props.item.title,
-                detail: this.props.item.detail
-            });
+                urgent: this.props.item.urgent
+            }));
         }
     }
 
+    //  Event Handlers  //
     handleCancel = (e) => {
         this.props.onClear();
         this.props.history.goBack();
@@ -45,10 +50,10 @@ class Inspector extends Component {
     };
     handleConfirm = (e) => {
         const item = {
-            detail: this.state.detail,
-            id: utility.genId(),
-            title: this.state.title,
-        };
+            detial: this.state.detail,
+            id: this.props.item ? this.props.item.id : utility.genId(),
+            title: this.state.title
+        }
         if (this.props.item) {
             this.props.onUpdate(item);
         } else {
@@ -58,29 +63,48 @@ class Inspector extends Component {
         this.props.history.goBack();
     };
     handleDelete = (e) => {
-        this.props.onDelete({id: this.props.match.params.id});
+        this.props.onDelete({id: this.props.item.id});
+        this.props.onClear();
+        this.props.history.goBack();
     };
+    handleToggle = (e, property) => {
+        this.setState(prev => ({
+            ...prev,
+            [property]: !prev[property]
+        }));
+    }
 
     render() {
         return (
-            <main>
-                <div>
+            <main className={styles.Inspect}>
+                <div className={styles.Wrapper}>
                     <Navigation
                         cancel={this.handleCancel}
                         confirm={this.handleConfirm}
-                        touched={this.state.touched}
-                        values={['cancel', this.props.match.params.id ? 'save' : 'add']}/>
-                    <form>
+                        enabled={this.state.title.length}
+                        values={['cancel', this.props.item ? 'save' : 'add']}/>
+                    <form className={styles.Form}>
                         <div className={styles.Wrapper}>
                             <Title
                                 change={(e) => this.handleChange(e, 'title')}
-                                value={this.state.title} />
+                                value={this.state.title}
+                                label='title'
+                                placeholder='Lorem Ipsum' />
                             <Detail
                                 change={(e) => this.handleChange(e, 'detail')}
-                                value={this.state.detail} />
+                                value={this.state.detail}
+                                label='detail'
+                                placeholder='Lorem ipsum dolor set amet.' />
+                            <Toggle
+                                change={(e) => this.handleToggle(e, 'complete')}
+                                value={this.state.complete}
+                                label='complete' />
+                            <Toggle
+                                change={(e) => this.handleToggle(e, 'urgent')}
+                                value={this.state.urgent}
+                                label='urgent' />
                         </div>
                     </form>
-                    <Bar value='delete' click={this.handleDelete} />
                 </div>
             </main>
         );
@@ -101,4 +125,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Inspector);
+export default connect(mapStateToProps, mapDispatchToProps)(Inspect);

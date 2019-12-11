@@ -9,7 +9,9 @@ const Detail = (props) => {
                 <label>Detail</label>
                 <textarea
                     onChange={props.change}
-                    value={props.value}></textarea>
+                    value={props.value}
+                    placeholder={props.placeholder}
+                    maxLength={128}></textarea>
             </div>
         </div>
     );

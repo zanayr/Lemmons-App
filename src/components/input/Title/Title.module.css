@@ -1,6 +1,6 @@
 .Title {
-    border-bottom: 1px solid var(--light-gray);
     height: 33.33vh;
+    padding-bottom: 8px;
     width: auto;
 }
 .Title > div {
@@ -11,7 +11,6 @@
 }
 .Wrapper {
     height: 100%;
-    padding: 8px;
     width: auto;
 }
 
@@ -22,12 +21,21 @@
     visibility: hidden;
     z-index: -1;
 }
+.Title span {
+    background-color: var(--light-gray);
+    bottom: -8px;
+    height: 1px;
+    left: 0px;
+    position: absolute;
+    right: -8px;
+    top: auto;
+}
 
 /* Input */
 .Title input {
     border: none;
     font-size: 2em;
-    font-weight: 700;
+    font-weight: 900;
     padding: 0px;
 }
 .Title input:focus {

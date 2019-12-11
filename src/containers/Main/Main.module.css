@@ -1,8 +1,13 @@
 .Main {
     height: 100vh;
 }
-
 .Wrapper {
     height: 100%;
-    width: 100%;
+    width: auto;
+}
+.Main > div {
+    padding: 8px;
+}
+.Container > div {
+    margin: 0px -8px;
 }

@@ -1,12 +1,12 @@
 .Action {
     background-color: var(--accent);
-    border-radius: 16px;
+    border-radius: 24px;
     bottom: 8px;
     cursor: pointer;
-    height: 32px;
+    height: 48px;
     position: fixed;
     right: 8px;
-    width: 32px;
+    width: 48px;
 }
 .Action > div {
     align-items: center;
